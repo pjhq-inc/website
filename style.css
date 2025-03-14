@@ -11,8 +11,8 @@ body {
 .wrapper {
     display: flex;
     justify-content: flex-start;
-    align-items:  center;
-    overflow:hidden
+    align-items: center;
+    overflow: hidden;
 }
 .text {
     margin-left: 20rem;
@@ -40,7 +40,6 @@ body {
     background-color: rgba(255, 0, 0, 0.352);
 }
 .icon {
-    /* margin-top: 4rem; */
     width: 18rem;
     height: 18rem;
 }
@@ -58,18 +57,20 @@ body {
     33.33% { transform: translateX(0%); opacity: 1; }
     41.67% { transform: translateX(-100%); opacity: 0; }
     100% { transform: translateX(-100%); opacity: 0; }
-  }
+}
+
 .member-wrapper {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: repeat(3, 200px);
     grid-template-areas: "cards";
     width: 50%;
-    animation: slideCards 12s, infinite ease-in-out;
+    animation: slideCards 12s infinite ease-in-out;
 }
+
 .member {
     opacity: 0;
     display: flex;
-    grid-area: "cards";
+    grid-area: cards;
     transform: translateX(100%);
     width: fit-content;
     justify-content: flex-start;
@@ -77,11 +78,15 @@ body {
     transition: transform 1s ease-in-out;
     animation: slide 12s infinite;
 }
+
 .member-wrapper .member:nth-child(1) {
     animation-delay: 0s;
 }
 
-
 .member-wrapper .member:nth-child(2) {
     animation-delay: 4s;
+}
+
+.member-wrapper .member:nth-child(3) {
+    animation-delay: 8s;
 }
