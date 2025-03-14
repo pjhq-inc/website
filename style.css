@@ -1,62 +1,74 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    margin: 50px;
+    position: relative;
 }
+
+.pj {
+    margin-top: 20px;
+    font-size: 2.5rem;
+}
+
+
 .logo {
     max-width: 100%;
     height: auto;
     border-radius: 10px;
-}
-.wrapper {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    overflow: hidden;
-}
-.text {
-    margin-left: 20rem;
-    width: 50%;
-}
-.name {
-    text-align: left;
-    width: 100%;
-    font-size: 36px;
-    margin-bottom: 1rem;
-}
-.description {
-    text-align: left;
-    width: 330px;
-    margin-bottom: 1rem;
-}
-.roles {
-    margin-top: .5rem;
-    margin-bottom: .5rem;
-}
-.founding-father {
-    border: solid 2px black;
-    width: 130px;
-    border-radius: 10px;
-    background-color: rgba(255, 0, 0, 0.352);
-}
-.icon {
-    width: 18rem;
-    height: 18rem;
-}
-.links {
-    width: fit-content;
-}
-.link-icon {
-    width: 20px;
-    height: 20px;
+    margin-top: 20px;
 }
 
-@keyframes slide {
-    0% { transform: translateX(100%); opacity: 0; }
-    8.33% { transform: translateX(0%); opacity: 1; }
-    33.33% { transform: translateX(0%); opacity: 1; }
-    41.67% { transform: translateX(-100%); opacity: 0; }
-    100% { transform: translateX(-100%); opacity: 0; }
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.sidebar-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Make buttons full width */
+}
+
+.sidebar-button:hover {
+    background-color: #0056b3;
+}
+
+.sidebar-button.home {
+    background-color: #28a745;
+}
+
+.sidebar-button.home:hover {
+    background-color: #218838;
+}
+
+.sidebar-button.about {
+    background-color: #ffc107;
+}
+
+.sidebar-button.about:hover {
+    background-color: #e0a800;
 }
 
 .member-wrapper {
@@ -66,6 +78,7 @@ body {
     width: 50%;
     animation: slideCards 12s infinite ease-in-out;
 }
+
 
 .member {
     opacity: 0;
@@ -89,4 +102,17 @@ body {
 
 .member-wrapper .member:nth-child(3) {
     animation-delay: 8s;
+}
+
+@keyframes slide {
+    0% { transform: translateX(100%); opacity: 0; }
+    8.33% { transform: translateX(0%); opacity: 1; }
+    33.33% { transform: translateX(0%); opacity: 1; }
+    41.67% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(-100%); opacity: 0; }
+}
+
+@keyframes slideCards {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
