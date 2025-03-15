@@ -16,7 +16,39 @@ body {
     background-repeat: no-repeat; 
     position: relative;
     animation: scrollBg 30s linear infinite; 
+    box-shadow: -30px 0 50px rgba(0, 0, 0, 0.5);
 }
+
+.animbg::before,
+.animbg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%; 
+  background: rgba(0, 0, 0, 0.816); 
+}
+
+.animbg::before {
+  left: 0; 
+}
+
+.animbg::after {
+  right: 0; 
+}
+
+
+.animbg .shadow {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20%; 
+  right: 20%; 
+  background: rgba(0, 0, 0, 0.464); 
+  z-index: 0; 
+}
+
+
 
 
 @keyframes scrollBg {
@@ -142,4 +174,15 @@ body {
 
 	z-index: 10;
 
+}
+#zeldalord {
+  position: absolute;
+  top: 50%;
+  left: 3.5%;
+  transform: translateY(-50%); 
+
+   
+}
+#zpfp {
+    border-radius: 15px;
 }
