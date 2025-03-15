@@ -1,16 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 
-
-
-
-
-
 body {
 
-	background-image: url("assets/images/landing_bg.jpg");
-	background-size: 100%;
-	background-repeat: no-repeat;
+	background-color: rgb(31, 31, 31);
 
 	font-family: "Inter", sans-serif;
 
@@ -19,7 +12,9 @@ body {
 .fa-brands {
 	margin-top: 35%;
 	color: rgb(14, 24, 41);
+	z-index: 2;
 }
+
 
 #top-bar-div{
 
@@ -29,16 +24,56 @@ body {
 
 }
 
-#main-shit{
+#info-bar{
+	width: 100%;
+	position: relative;
+	height: 100px;
+	background-color: rgba(49, 49, 49, 0.7);
+	backdrop-filter: blur(10px);
+	overflow: hidden;
+}
+
+#info-bar p{
+	color: rgb(233, 233, 233);
+	text-align: center;
+	font-size: xx-large;
+}
+
+
+#info-text{
+	color: rgb(58, 58, 58);
+	background-color: rgba(49, 49, 49, 0.1);
+	width: 17%;
+	backdrop-filter: blur(5px);
+	position: absolute;
+	text-align: center;
+	margin-top: 10%;
+	margin-left: 75%;
+}
+
+#main-top{
 	animation-name: fadeInUp;
 	animation-duration: 2s;
+	overflow: hidden;
+	padding-bottom: 13%;
 }
+
+
 
 @keyframes fadeInUp{
-	0%{margin-top: 10%; opacity: 0;}
-	100%{margin-top: 0%; opacity: 1;}
+	0%{padding-top: 10%; opacity: 0;}
+	100%{padding-top: 0%; opacity: 1;}
 }
 
+@keyframes hoverUp{
+	0%{padding-top: 0px;}
+	100%{padding-top: 100px;}
+}
+
+@keyframes hoverDown{
+	0%{padding-bottom: 10px;}
+	100%{margin-bottom: 0px;}
+}
 
 #top-bar{
 
@@ -205,3 +240,4 @@ h1{
 	100% {opacity: 100%;}
 
 }
+
