@@ -8,13 +8,18 @@
 
 body {
 
-	background-color: black;
+	background-image: url("assets/images/landing_bg.jpg");
+	background-size: 100%;
+	background-repeat: no-repeat;
 
 	font-family: "Inter", sans-serif;
 
 }
 
-
+.fa-brands {
+	margin-top: 35%;
+	color: rgb(14, 24, 41);
+}
 
 #top-bar-div{
 
