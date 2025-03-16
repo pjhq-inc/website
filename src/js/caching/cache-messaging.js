@@ -198,8 +198,8 @@ class CacheMessenger {
         window.cacheMessenger.preloadPage('home');
       }
     }, 2000); // Wait 2 seconds to let the page finish loading first
-    
-    // Optional: Add visual indicator of cache status
+
+    /* Optional indicator, uncomment for testing :p
     window.cacheMessenger.addEventListener('cache-updated', data => {
       console.log(`[CM] Cache updated: ${data.url}`);
       
@@ -226,4 +226,5 @@ class CacheMessenger {
         setTimeout(() => indicator.remove(), 500);
       }, 2000);
     });
+    */
   });

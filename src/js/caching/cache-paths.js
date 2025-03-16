@@ -5,26 +5,27 @@
 
 // Define all cacheable resources in a single location
 const CACHE_PATHS = {
+  // Only cache static files atm, gotta implement refreshing later
   // Core pages
   pages: [
-    '/',
-    '/index.html',
-    '/about/index.html',
+    // '/',
+    // '/index.html',
+    // '/about/index.html',
   ],
   
   // Stylesheets
   styles: [
-    '/style.css',
-    '/about/style.css',
+    // '/style.css',
+    // '/about/style.css',
   ],
   
   // JavaScript files
   scripts: [
-    '/about/script.js',
-    '/src/js/script.js',
-    '/src/js/slides.js',
-    '/src/js/caching/cache-paths.js',
-    '/src/js/caching/cache-messaging.js'
+    // '/about/script.js',
+    // '/src/js/script.js',
+    // '/src/js/slides.js',
+    // '/src/js/caching/cache-paths.js',
+    // '/src/js/caching/cache-messaging.js'
   ],
   
   // Images
