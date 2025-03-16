@@ -8,6 +8,23 @@
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>PJHQ</title>
+	
+	<script src="/src/js/caching/cache-paths.js"></script>
+  	<script>
+    // Service worker registration
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => {
+            console.log('ServiceWorker registered with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  	</script>
+  	<script src="/src/js/caching/cache-messaging.js" defer></script>
 </head>
 <body>
 	<div id="top-bar-div">
@@ -26,6 +43,6 @@
 		<a href="https://www.instagram.com/pjhq.devs/" target="#blank"><i class="fa-brands fa-instagram fa-2xl" style="margin-left: 3%;"></i></a>
 		<a href="https://www.threads.net/@pjhq.devs" target="#blank"><i class="fa-brands fa-threads fa-2xl" style="margin-left: 3%;"></i></a>
 	</div>
-	<script src="script.js"></script>
+	<script src="src/js/script.js" defer></script>
 </body>
 </html>
