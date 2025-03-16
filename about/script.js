@@ -11,4 +11,4 @@ function restartAnimation() {
 }
 
 
-setInterval(restartAnimation, 18000); // Each card is on screen for 6s, add +6000 for every addition card, this is for the current 3 (me,pixel,carrot)
+setInterval(restartAnimation, 42000);

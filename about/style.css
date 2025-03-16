@@ -26,7 +26,7 @@ body {
   top: 0;
   bottom: 0;
   width: 20%; 
-  background: rgba(0, 0, 0, 0.816); 
+  background: rgba(0, 0, 0, 0.693); 
 }
 
 .animbg::before {
@@ -44,7 +44,7 @@ body {
   bottom: 0;
   left: 20%; 
   right: 20%; 
-  background: rgba(0, 0, 0, 0.464); 
+  background: rgba(0, 0, 0, 0.564); 
   z-index: 0; 
 }
 
@@ -184,6 +184,21 @@ body {
 #cpfp {
     border-radius: 15px;
 }
+#rpfp {
+    border-radius: 15px;
+}
+#zzpfp {
+    border-radius: 15px;
+}
+#fpfp {
+    border-radius: 15px;
+}
+#upfp {
+    border-radius: 15px;
+}
+#spfp {
+    border-radius: 15px;
+}
 .cardcont {
     display: flex;
     justify-content: left;
@@ -201,7 +216,7 @@ body {
    animation-fill-mode: forwards; 
   
   }
-  #zeldalord, #pixelatedface, #carrot {
+  #zeldalord, #pixelatedface, #carrot, #reclipse, #zilla, #flop, #uwudwagon, #sqrt{
     position: absolute;
     opacity: 0;
     animation: swoop 6s ease-in-out;
@@ -235,4 +250,35 @@ body {
   
   #carrot {
     animation-delay: 12s; 
+  }
+  #reclipse {
+    animation-delay: 18s;
+  }
+  #zilla {
+    animation-delay: 24s;
+  }
+  #flop {
+    animation-delay: 30s;
+  }
+  #uwudwagon {
+    animation-delay: 36s;
+  }
+  #sqrt {
+    animation-delay: 42s;
+  }
+  #rolefounder{
+    border-radius: 30px;
+    color: white;
+    background-color: rgba(0, 123, 255, 0.218);
+    border: 2px solid;
+    border-color: rgb(1, 31, 55);
+    width: 90px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  #cardnames {
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    font-family:Arial, Helvetica, sans-serif
   }
