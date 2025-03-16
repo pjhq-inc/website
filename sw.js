@@ -141,7 +141,7 @@ self.addEventListener('install', event => {
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', event => {
+self.addEventListener('activate', event => { // Windows
   log('Activating service worker...');
   
   event.waitUntil(
