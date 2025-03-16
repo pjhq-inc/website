@@ -1,0 +1,55 @@
+/* Cookie Popup */
+.cookie-popup {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(241, 241, 241, 0.95);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    z-index: 10000; /* Above everything */
+}
+
+/* Blur Effect for the Background (Not the Popup) */
+body.blurred {
+    filter: blur(8px);
+    pointer-events: none; /* Prevents interactions with blurred elements */
+}
+
+/* Allow Interaction with Cookie Popup */
+.cookie-popup {
+    filter: none;
+    pointer-events: auto;
+}
+
+/* Cookie Popup Content */
+.cookie-popup p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Accept Button */
+.cookie-popup button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.cookie-popup button:hover {
+    background-color: #45a049;
+}
+
+/* Ensure buttons are visible */
+button {
+    position: relative;
+    z-index: 10001;
+    display: block;
+}
