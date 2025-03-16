@@ -1,22 +1,12 @@
 /**
- * PJHQ Service Worker - v2
- * Enhanced with messaging capabilities
+ * PJHQ Service Worker - v3
+ * Strict caching - only caches paths explicitly defined in CACHE_PATHS
  */
 
 // Import shared cache paths
 importScripts('/src/js/caching/cache-paths.js');
 
-const CACHE_NAME = 'pjhq-cache-v2';
-
-// Resources to cache when they're requested
-const RUNTIME_CACHE_PATTERNS = [
-  /\.(?:png|jpg|jpeg|svg|gif)$/,  // Images
-  /\.(?:css)$/,                   // Stylesheets
-  /\.(?:js)$/,                    // JavaScript
-  /^https:\/\/fonts\.googleapis\.com/,  // Google Fonts CSS
-  /^https:\/\/fonts\.gstatic\.com/,    // Google Fonts
-  /^https:\/\/cdn\.discordapp\.com/    // Discord CDN
-];
+const CACHE_NAME = 'pjhq-cache-v3';
 
 // Helper for logging
 const log = msg => {
@@ -30,6 +20,50 @@ const log = msg => {
         data: { message: msg, timestamp: Date.now() }
       });
     });
+  });
+};
+
+// Create a flat array of all paths to cache
+const getAllPathsArray = () => {
+  const allPaths = [];
+  
+  // Only add non-empty arrays
+  if (CACHE_PATHS.pages && CACHE_PATHS.pages.length) {
+    allPaths.push(...CACHE_PATHS.pages);
+  }
+  
+  if (CACHE_PATHS.styles && CACHE_PATHS.styles.length) {
+    allPaths.push(...CACHE_PATHS.styles);
+  }
+  
+  if (CACHE_PATHS.scripts && CACHE_PATHS.scripts.length) {
+    allPaths.push(...CACHE_PATHS.scripts);
+  }
+  
+  if (CACHE_PATHS.images && CACHE_PATHS.images.length) {
+    allPaths.push(...CACHE_PATHS.images);
+  }
+  
+  if (CACHE_PATHS.external && CACHE_PATHS.external.length) {
+    allPaths.push(...CACHE_PATHS.external);
+  }
+  
+  return allPaths;
+};
+
+// Check if a URL matches any of our defined paths
+const isUrlInCachePaths = (url) => {
+  const allPaths = getAllPathsArray();
+  
+  // Handle both absolute and relative URLs
+  const urlObj = new URL(url, self.location.origin);
+  const urlPath = urlObj.href;
+  
+  // Check if the URL exactly matches any of our defined paths
+  // We convert both to full URLs for comparison
+  return allPaths.some(path => {
+    const fullPath = path.startsWith('http') ? path : new URL(path, self.location.origin).href;
+    return fullPath === urlPath;
   });
 };
 
@@ -48,11 +82,9 @@ const logCacheError = (errorDetails) => {
   
   // Notify clients of the error
   notifyClients('cache-error', errorDetails);
-  
-  // Optionally, you could store errors in IndexedDB for later analysis
 };
 
-// Schizophrenic caching
+// Explicit caching function
 const cacheUrls = async (urls) => {
   const cache = await caches.open(CACHE_NAME);
   const results = { succeeded: 0, failed: 0, errors: [] };
@@ -118,21 +150,21 @@ const notifyClients = (type, data) => {
   });
 };
 
-// Install event - cache core resources from the shared path definition
+// Install event - cache core resources
 self.addEventListener('install', event => {
   log('Installing service worker...');
   
-  // Get the core resources to cache immediately
-  const initialCache = [
-    ...CACHE_PATHS.pages,
-    ...CACHE_PATHS.styles,
-    ...CACHE_PATHS.scripts.filter(script => 
-      !script.includes('cache-messaging.js') // Avoid circular dependency
-    )
-  ];
+  // Log the paths we're going to cache
+  const pathsToCacheAtInstall = getAllPathsArray();
+  log(`Paths to cache on install: ${pathsToCacheAtInstall.length}`);
+  
+  if (pathsToCacheAtInstall.length === 0) {
+    log('No paths defined in CACHE_PATHS, nothing to cache at install');
+    return self.skipWaiting();
+  }
   
   event.waitUntil(
-    cacheUrls(initialCache)
+    cacheUrls(pathsToCacheAtInstall)
       .then(() => {
         log('Initial cache complete, activating immediately');
         return self.skipWaiting();
@@ -141,7 +173,7 @@ self.addEventListener('install', event => {
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', event => { // Windows
+self.addEventListener('activate', event => {
   log('Activating service worker...');
   
   event.waitUntil(
@@ -162,25 +194,28 @@ self.addEventListener('activate', event => { // Windows
       })
       .then(() => {
         log('Service worker activated and in control');
-        notifyClients('sw-ready', { version: 'v2' });
+        notifyClients('sw-ready', { version: 'v3' });
       })
   );
 });
 
-// Fetch event - respond from cache or network
+// Fetch event - ONLY serve cached resources that match our paths
 self.addEventListener('fetch', event => {
   // Skip non-GET requests
   if (event.request.method !== 'GET') return;
   
-  const url = new URL(event.request.url);
+  const url = event.request.url;
   
-  // Skip cross-origin requests unless they match our patterns
-  if (url.origin !== self.location.origin && 
-      !RUNTIME_CACHE_PATTERNS.some(pattern => pattern.test(url.href))) {
+  // Check if this URL is one we should be caching/serving from cache
+  const shouldHandleFromCache = isUrlInCachePaths(url);
+  
+  // Only intercept requests for URLs in our cache paths
+  if (!shouldHandleFromCache) {
+    // Let the browser handle it normally
     return;
   }
   
-  // Handle the request with a cache-first strategy
+  // For URLs we care about, use cache-first strategy
   event.respondWith(
     caches.match(event.request)
       .then(cachedResponse => {
@@ -189,12 +224,11 @@ self.addEventListener('fetch', event => {
           return cachedResponse;
         }
         
-        // Not in cache, try the network
+        // Not in cache but it should be, try to fetch and cache it
         return fetch(event.request)
           .then(response => {
             // Return immediately if not a successful response
             if (!response || response.status !== 200) {
-              // Log non-200 responses
               if (response) {
                 logCacheError({
                   url: event.request.url,
@@ -210,26 +244,21 @@ self.addEventListener('fetch', event => {
             // Clone the response to cache it
             const responseToCache = response.clone();
             
-            // Check if this resource should be cached
-            const shouldCache = RUNTIME_CACHE_PATTERNS.some(pattern => 
-              pattern.test(event.request.url)
-            );
-            
-            if (shouldCache) {
-              caches.open(CACHE_NAME)
-                .then(cache => {
-                  cache.put(event.request, responseToCache);
-                  notifyClients('cache-updated', { url: event.request.url });
-                })
-                .catch(error => {
-                  logCacheError({
-                    url: event.request.url,
-                    error: error.message,
-                    type: 'cache-write-error',
-                    timestamp: Date.now()
-                  });
+            // Cache the successful response
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                cache.put(event.request, responseToCache);
+                notifyClients('cache-updated', { url: event.request.url });
+                log(`Cached on-demand: ${url}`);
+              })
+              .catch(error => {
+                logCacheError({
+                  url: event.request.url,
+                  error: error.message,
+                  type: 'cache-write-error',
+                  timestamp: Date.now()
                 });
-            }
+              });
             
             return response;
           })
@@ -240,7 +269,6 @@ self.addEventListener('fetch', event => {
               type: 'network-error',
               timestamp: Date.now()
             });
-            // Could return a fallback response here if needed
           });
       })
   );
@@ -256,8 +284,15 @@ self.addEventListener('message', event => {
     case 'CACHE_RESOURCES':
       log(`Received request to cache ${data.urls.length} resources (${data.reason})`);
       
+      // Filter out URLs that aren't in our cache paths
+      const urlsToCache = data.urls.filter(url => isUrlInCachePaths(url));
+      
+      if (urlsToCache.length !== data.urls.length) {
+        log(`Filtered out ${data.urls.length - urlsToCache.length} URLs that aren't in CACHE_PATHS`);
+      }
+      
       event.waitUntil(
-        cacheUrls(data.urls)
+        cacheUrls(urlsToCache)
           .then(results => {
             // Send response if there's a port
             if (event.ports && event.ports[0]) {
@@ -265,6 +300,7 @@ self.addEventListener('message', event => {
                 success: true,
                 cached: results.succeeded,
                 failed: results.failed,
+                filtered: data.urls.length - urlsToCache.length,
                 total: data.urls.length
               });
             }
@@ -279,7 +315,8 @@ self.addEventListener('message', event => {
           .then(response => {
             const result = {
               url: data.url,
-              cached: !!response
+              cached: !!response,
+              inCachePaths: isUrlInCachePaths(data.url)
             };
             
             if (event.ports && event.ports[0]) {
@@ -310,6 +347,10 @@ self.addEventListener('message', event => {
                   !r.url.match(/\.(html|css|js|png|jpg|jpeg|gif|svg)$/)
                 ).length
               },
+              cachePaths: {
+                defined: getAllPathsArray().length,
+                cached: keys.filter(r => isUrlInCachePaths(r.url)).length
+              },
               sampleUrls: keys.slice(0, 5).map(r => r.url)
             };
             
@@ -323,6 +364,17 @@ self.addEventListener('message', event => {
     case 'SKIP_WAITING':
       self.skipWaiting();
       log('Skip waiting instruction received');
+      break;
+      
+    case 'LIST_CACHE_PATHS':
+      // New command to list all cache paths
+      const allPaths = getAllPathsArray();
+      if (event.ports && event.ports[0]) {
+        event.ports[0].postMessage({
+          paths: allPaths,
+          count: allPaths.length
+        });
+      }
       break;
   }
 });
