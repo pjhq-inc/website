@@ -175,17 +175,64 @@ body {
 	z-index: 10;
 
 }
-#zeldalord {
-  position: absolute;
-  top: 50%;
-  left: 3.5%;
-  transform: translateY(-50%); 
-
-   
-}
 #zpfp {
     border-radius: 15px;
 }
 #ppfp {
     border-radius: 15px;
 }
+#cpfp {
+    border-radius: 15px;
+}
+.cardcont {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+  }
+.card {
+   position: absolute;
+   opacity: 0; 
+   transform: translateX(-100%) translateY(-50%); 
+   top: 50%; 
+   animation-duration: 6s;
+   animation-timing-function: ease-in-out;
+   animation-fill-mode: forwards; 
+  
+  }
+  #zeldalord, #pixelatedface, #carrot {
+    position: absolute;
+    opacity: 0;
+    animation: swoop 6s ease-in-out;
+   
+  }
+  @keyframes swoop {
+    0% {
+      transform: translateX(-100%) translateY(-50%); 
+      opacity: 0; 
+    }
+    25% {
+      transform: translateX(20%) translateY(-50%); 
+      opacity: 1; 
+    }
+    75% {
+      transform: translateX(20%) translateY(-50%); 
+      opacity: 1; 
+    }
+    100% {
+      transform: translateX(-100%) translateY(-50%); 
+      opacity: 0; 
+    }
+  }  
+  #zeldalord {
+    animation-delay: 0s;
+  }
+  
+  #pixelatedface {
+    animation-delay: 6s; 
+  }
+  
+  #carrot {
+    animation-delay: 12s; 
+  }
