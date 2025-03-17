@@ -2,7 +2,9 @@
  * PJHQ Shared Cache Paths
  * Central location for defining all cacheable resources
  */
-
+const IMAGE_FILEPATH = "/public/assets/images/";
+const ICON_FILEPATH = "/public/assets/images/icons/";
+const BACKGROUND_FILEPATH = "/public/assets/images/backgrounds/";
 // Define all cacheable resources in a single location
 const CACHE_PATHS = {
   // Only cache static files atm, gotta implement refreshing later
@@ -31,19 +33,19 @@ const CACHE_PATHS = {
   // Images
   images: [
     // Main site images
-    '/assets/images/icons/pj_logo.png',
-    '/assets/images/backgrounds/landing_bg.jpg',
+    `${ICON_FILEPATH}pj_logo.png`,
+    `${BACKGROUND_FILEPATH}landing_bg.jpg`,
     
     // About page team images
-    '/about/assets/images/people/zeldalord.png',
-    '/about/assets/images/people/pixel.png',
-    '/about/assets/images/people/kuudraloremaster.png',
-    '/about/assets/images/people/reclipse.png',
-    '/about/assets/images/people/zilla.png',
-    '/about/assets/images/people/flop.png',
-    '/about/assets/images/people/uwudwagon.png',
-    '/about/assets/images/people/sqrt.png',
-    '/about/assets/images/backgrounds/about_background.png'
+    `${IMAGE_FILEPATH}people/zeldalord.png`,
+    `${IMAGE_FILEPATH}people/uwudwagon.png`,
+    `${IMAGE_FILEPATH}people/kuudraloremaster.png`,
+    `${IMAGE_FILEPATH}people/reclipse.png`,
+    `${IMAGE_FILEPATH}people/zilla.png`,
+    `${IMAGE_FILEPATH}people/flop.png`,
+    `${IMAGE_FILEPATH}people/pixel.png`,
+    `${IMAGE_FILEPATH}people/sqrt.png`,
+    `${BACKGROUND_FILEPATH}about_background.png`
   ],
   
   // External resources
