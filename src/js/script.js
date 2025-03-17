@@ -1,3 +1,3 @@
 function goToAboutPage() {
-    window.location.href = "/about";
+    window.location.href = "/pages/about";
 }
