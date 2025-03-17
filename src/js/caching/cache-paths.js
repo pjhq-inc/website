@@ -31,19 +31,19 @@ const CACHE_PATHS = {
   // Images
   images: [
     // Main site images
-    '/assets/images/pj_logo.png',
-    '/assets/images/landing_bg.jpg',
+    '/assets/images/icons/pj_logo.png',
+    '/assets/images/backgrounds/landing_bg.jpg',
     
     // About page team images
-    '/about/assets/images/zeldalord.png',
-    '/about/assets/images/pixel.png',
-    '/about/assets/images/kuudraloremaster.png',
-    '/about/assets/images/reclipse.png',
-    '/about/assets/images/zilla.png',
-    '/about/assets/images/flop.png',
-    '/about/assets/images/uwudwagon.png',
-    '/about/assets/images/sqrt.png',
-    '/about/assets/images/about_background.png'
+    '/about/assets/images/people/zeldalord.png',
+    '/about/assets/images/people/pixel.png',
+    '/about/assets/images/people/kuudraloremaster.png',
+    '/about/assets/images/people/reclipse.png',
+    '/about/assets/images/people/zilla.png',
+    '/about/assets/images/people/flop.png',
+    '/about/assets/images/people/uwudwagon.png',
+    '/about/assets/images/people/sqrt.png',
+    '/about/assets/images/backgrounds/about_background.png'
   ],
   
   // External resources
