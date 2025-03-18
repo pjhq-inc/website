@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(32, 32, 32);
+    font-family: "Inter", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#cards {
+    margin-top: 10%;
+    background-color: rgba(56, 56, 56, 0.281);
+    height: 350px;
+}
+
+.card {
+    height: 350px;
+    width: 250px;
+    border-radius: 20px;
+    background-color: rgba(94, 94, 94, 0.281);
+}
+
+.pfp {
+    width: 250px;
+    opacity: 50%;
+    border-radius: 20px;
+}
