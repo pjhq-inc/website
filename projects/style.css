@@ -13,17 +13,55 @@ body {
     margin-top: 10%;
     background-color: rgba(56, 56, 56, 0.281);
     height: 350px;
+    overflow: hidden;
+    padding: 0px 50px;
+    white-space: nowrap;
+    
+}
+
+@keyframes sliding {
+    from { transform: translateX(0);}
+    to {transform: translateX(-100%);}
+}
+
+#cards-slide {
+    animation: 5s sliding infinite linear;
+    display: inline-block;
+    
 }
 
 .card {
     height: 350px;
     width: 250px;
     border-radius: 20px;
-    background-color: rgba(94, 94, 94, 0.281);
+    float: left;
+    margin-left: 50px;
+    background-color: rgba(94, 94, 94, 0.7);
 }
 
-.pfp {
+
+
+.pfp{
+    position: relative;
+    display: inline-block;
+    
+}
+
+.pfp::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(94, 94, 94, 0.7) 0%, rgba(94, 94, 94, 0.7) 5%, rgba(94, 94, 94, 0) 100%);
+
+}
+
+.pfp img{
     width: 250px;
-    opacity: 50%;
+    opacity: 100%;
     border-radius: 20px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
 }
