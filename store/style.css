@@ -5,12 +5,20 @@ body {
     padding: 0;
     color: #333;
     line-height: 1.6;
+    background-image: url('../public/assets/images/backgrounds/cement.png'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    min-height: 100vh;
   }
   
   .store-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.9); 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   h1 {
