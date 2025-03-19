@@ -1,5 +1,5 @@
 function restartAnimation() {
-    const elements = document.querySelectorAll('#zeldalord, #uwudwagon, #carrot, #reclipse, #zilla, #flop, #pixelatedface, #sqrt');
+    const elements = document.querySelectorAll('#zeldalord, #uwudwagon, #pixelatedface, #carrot, #reclipse, #zilla, #flop, #sqrt');
     
     
     elements.forEach((element) => {
