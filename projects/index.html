@@ -1,55 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<link rel="icon" type="image/x-icon" href="/public/assets/images/icons/pj_round.png">
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-	<script src="https://kit.fontawesome.com/72b54ccc46.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="/src/css/shared.css"> 
-	<link rel="stylesheet" href="/src/css/scroll.css">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>PJ HQ | Projects</title>
-	
-	<script src="src/js/caching/cache-paths.js"></script>
-  	<script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('ServiceWorker registered with scope:', registration.scope);
-          })
-          .catch(error => {
-            console.error('ServiceWorker registration failed:', error);
-          });
-      });
-    }
-  	</script>
-  	<script src="src/js/caching/cache-messaging.js" defer></script>
-</head>
-<body style="height: 100%; width: 100%; overflow-x: hidden;">
-	<script src="/src/js/shared.js"></script>
-    
-	<div id="cards">
-		<div id="cards-slide">
-			<div class="card">
-				<div class="pfp"><img src="/public/assets/images/people/pixel.png"></div>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<link rel="icon" type="image/x-icon" href="/public/assets/images/icons/pj_round.png">
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+			<script src="https://kit.fontawesome.com/72b54ccc46.js" crossorigin="anonymous"></script>
+			<link rel="stylesheet" href="style.css">
+			<link rel="stylesheet" href="/src/css/shared.css"> 
+			<link rel="stylesheet" href="/src/css/scroll.css">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<title>PJ HQ | Projects</title>
+			<script src="src/js/caching/cache-paths.js"></script>
+			<script>
+				if ('serviceWorker' in navigator) {
+					window.addEventListener('load', () => {
+						navigator.serviceWorker.register('/sw.js')
+							.then(registration => {
+								console.log('ServiceWorker registered with scope:', registration.scope);
+							})
+							.catch(error => {
+								console.error('ServiceWorker registration failed:', error);
+							});
+					});
+				}
+			</script>
+			<script src="src/js/caching/cache-messaging.js" defer></script>
+		</head>
+	<body style="height: 100%; width: 100%; overflow-x: hidden;">
+		<script src="/src/js/shared.js"></script>
+
+		<div id="projects-container">
+			<div class="project-card">
+				<div class="project-header" onclick="toggleExpand('rust-ai')">
+					<h2>Rust AI</h2>
+					<span class="material-icons expand-icon">expand_more</span>
+				</div>
+				<div class="project-content" id="rust-ai">
+					<p>surely</p>
+					<a href="https://youtu.be/kqj7b59D85Y?si=kQdhAYSiI4YDis93" class="project-link" target="_blank">Learn More</a>
+				</div>
 			</div>
-			<div class="card">
-				<div class="pfp"><img src="/public/assets/images/people/zeldalord.png"></div>
+
+			<div class="project-card">
+				<div class="project-header" onclick="toggleExpand('rust-cli')">
+					<h2>Rust CLI</h2>
+					<span class="material-icons expand-icon">expand_more</span>
+				</div>
+				<div class="project-content" id="rust-cli">
+					<p>rust supremacy i think</p>
+					<a href="https://youtu.be/HYKLZOo3DM4?si=Ds8287neqIvrcEpM" class="project-link" target="_blank">Learn More</a>
+				</div>
 			</div>
-			<div class="card">
-				<div class="pfp"><img src="/public/assets/images/people/kuudraloremaster.png"></div>
-			</div>
-			<div class="card">
-				<div class="pfp"><img src="/public/assets/images/people/reclipse.png"></div>
-			</div>
-			<div class="card">
-				<div class="pfp"><img src="/public/assets/images/people/flop.png"></div>
+
+			<div class="project-card">
+				<div class="project-header" onclick="toggleExpand('replace-rust')">
+					<h2>Replacing Everything with Rust</h2>
+					<span class="material-icons expand-icon">expand_more</span>
+				</div>
+				<div class="project-content" id="replace-rust">
+					<p>schlop</p>
+					<a href="https://youtu.be/UArsjPsm24s?si=l6vUsuM0nO6KRsAT" class="project-link" target="_blank">Learn More</a>
+				</div>
 			</div>
 		</div>
-	</div>
 
-	<script src="src/js/script.js" defer></script>
-</body>
+		<script>
+			function toggleExpand(id) {
+				const content = document.getElementById(id);
+				const icon = content.previousElementSibling.querySelector('.expand-icon');
+				content.classList.toggle('expanded');
+				icon.textContent = content.classList.contains('expanded') ? 'expand_less' : 'expand_more';
+			}
+		</script>
+
+		<script src="src/js/script.js" defer></script>
+	</body>
 </html>

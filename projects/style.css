@@ -1,67 +1,56 @@
-body {
-    background-color: rgb(32, 32, 32);
-    font-family: "Inter", sans-serif;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-#cards {
+#projects-container {
     margin-top: 10%;
-    background-color: rgba(56, 56, 56, 0.281);
-    height: 350px;
-    overflow: hidden;
-    padding: 0px 50px;
-    white-space: nowrap;
-    
+    padding: 0 50px;
 }
 
-@keyframes sliding {
-    from { transform: translateX(0);}
-    to {transform: translateX(-100%);}
-}
-
-#cards-slide {
-    animation: 5s sliding infinite linear;
-    display: inline-block;
-    
-}
-
-.card {
-    height: 350px;
-    width: 250px;
-    border-radius: 20px;
-    float: left;
-    margin-left: 50px;
+.project-card {
     background-color: rgba(94, 94, 94, 0.7);
-}
-
-
-
-.pfp{
-    position: relative;
-    display: inline-block;
-    
-}
-
-.pfp::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 4px;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(94, 94, 94, 0.7) 0%, rgba(94, 94, 94, 0.7) 5%, rgba(94, 94, 94, 0) 100%);
-
-}
-
-.pfp img{
-    width: 250px;
-    opacity: 100%;
     border-radius: 20px;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    background-color: rgba(56, 56, 56, 0.281);
+}
+
+.project-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.project-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 20px;
+}
+
+.project-content.expanded {
+    max-height: 200px;
+    padding: 20px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+.material-icons.expand-icon {
+    transition: transform 0.3s ease;
+}
+
+.project-content.expanded + .project-header .expand-icon {
+    transform: rotate(180deg);
 }
