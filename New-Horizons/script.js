@@ -27,7 +27,6 @@ async function updateCounter() {
       let currentValue = docSnap.data().value
       counterDisplay.textContent = currentValue.toString()
     } else {
-      // Handle case where document doesn't exist (shouldn't happen if you initialized it)
       console.error("Counter document not found!")
     }
   } catch (error) {
@@ -39,10 +38,10 @@ async function incrementCounter() {
     await updateDoc(counterRef, {
       value: increment(1)
     })
-    updateCounter() //refresh the display
+    updateCounter()
   } catch (error) {
     console.error("Error incrementing counter:", error)
   }
 }
 incrementButton.addEventListener("click", incrementCounter)
-updateCounter() //initial display
+updateCounter()
