@@ -3,10 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPrice = document.getElementById('total-price');
     const checkoutButton = document.getElementById('checkout-button');
 
-    // Example cart data
     const cart = [
-        { name: 'Product 1', price: 19.99, quantity: 2 },
-        { name: 'Product 2', price: 29.99, quantity: 1 }
+        //GetSelectedItems();
     ];
 
     let total = 0;
