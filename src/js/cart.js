@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPrice = document.getElementById('total-price');
     const checkoutButton = document.getElementById('checkout-button');
 
-    const cart = [
+    let cart = [
         //GetSelectedItems();
     ];
 
