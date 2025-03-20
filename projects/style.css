@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(129, 129, 129);
     font-family: "Inter", sans-serif;
 }
 
@@ -9,9 +9,11 @@ body {
     box-sizing: border-box;
 }
 
+
+
 #cards {
     margin-top: 10%;
-    background-color: rgba(56, 56, 56, 0.281);
+    background-color: rgba(39, 39, 39, 0.281);
     height: 350px;
     overflow: hidden;
     padding: 0px 50px;
