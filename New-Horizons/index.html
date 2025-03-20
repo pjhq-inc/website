@@ -1,57 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Counter</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
-    <style>
-        body { text-align: center; font-family: Arial, sans-serif; }
-        #counter { font-size: 2rem; margin: 20px; }
-        button { font-size: 1rem; padding: 10px; }
-    </style>
+  <title>Counter App</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Website Counter</h1>
-    <p>Current Count: <span id="counter">Loading...</span></p>
-    <button onclick="incrementCounter()">Increment</button>
+  <div id="counter">0</div>
+  <button id="increment">Increment</button>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyB-iSU9AWR7DY7l7CfIg7aqzGdoINg-Izg",
-            authDomain: "pjhq-nh.firebaseapp.com",
-            projectId: "pjhq-nh",
-            storageBucket: "pjhq-nh.firebasestorage.app",
-            messagingSenderId: "236304632775",
-            appId: "1:236304632775:web:04230017481d6e7de2e7e2",
-            measurementId: "G-MH4WTV0TTE"
-        };
-      
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-        const counterRef = db.collection("counters").doc("pageCounter");
-
-        async function getCounter() {
-            const doc = await counterRef.get();
-            if (doc.exists) {
-                document.getElementById("counter").innerText = doc.data().count;
-            } else {
-                await counterRef.set({ count: 0 });
-                document.getElementById("counter").innerText = 0;
-            }
-        }
-
-        async function incrementCounter() {
-            const doc = await counterRef.get();
-            if (doc.exists) {
-                let newCount = doc.data().count + 1;
-                await counterRef.update({ count: newCount });
-                document.getElementById("counter").innerText = newCount;
-            }
-        }
-
-        getCounter();
-    </script>
-</body>
+  <script src="script.js"></script> </body>
 </html>
