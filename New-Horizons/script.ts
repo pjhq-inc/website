@@ -43,5 +43,14 @@ async function incrementCounter() {
 }
 
 incrementButton.addEventListener("click", incrementCounter);
-updateCounter();
 
+counterRef.onSnapshot((doc) => {
+    if (doc.exists) {
+        let currentValue = doc.data().value;
+        counterDisplay.textContent = currentValue.toString();
+    } else {
+        console.error("Counter document not found!");
+    }
+});
+
+updateCounter();

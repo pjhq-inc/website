@@ -99,4 +99,13 @@ function incrementCounter() {
     });
 }
 incrementButton.addEventListener("click", incrementCounter);
+counterRef.onSnapshot(function (doc) {
+    if (doc.exists) {
+        var currentValue = doc.data().value;
+        counterDisplay.textContent = currentValue.toString();
+    }
+    else {
+        console.error("Counter document not found!");
+    }
+});
 updateCounter();
