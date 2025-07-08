@@ -5,12 +5,65 @@ body {
     font-family: "Inter", sans-serif;
 }
 
-.fa-brands {
+.background-image {
+    position: absolute; 
+    z-index: -10; 
+    width: 100%; 
+    overflow: hidden; 
+    filter: blur(3px);
+}
+
+.logo-image {
+    border-radius: 100%; 
+    width: 18%; 
+    position: absolute; 
+    margin-top: 12%; 
+    margin-left: 15%;
+}
+
+#pex-download {
+    position: absolute; 
+    margin-top: 22%; 
+    margin-left: 15%; 
+    background: linear-gradient(135deg, #6e8efb, #a777e3); 
+    color: white; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 25px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    font-family: 'Inter', sans-serif; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease;
+}
+
+#pex-download:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.social-icons {
+    position: absolute;
     margin-top: 35%;
+    margin-left: 12%;
+}
+
+.social-icons a {
+    margin-left: 3%;
+}
+
+.fa-brands {
     color: rgb(255, 255, 255);  
     z-index: 2;
 }
 
+.fa-x-twitter { color: white; }
+.fa-bluesky { color: #0886FE; }
+.fa-youtube { color: #e60000; }
+.fa-instagram { color: rgb(192, 96, 176); }
+.fa-threads { color: rgb(255, 255, 255); }
+
+/* Rest of your existing CSS... */
 #top-bar-div {
     position: relative;
     z-index: 40;
@@ -65,25 +118,6 @@ body {
     0% { padding-bottom: 10px; }
     100% { margin-bottom: 0px; }
 }
-
-
-
-h1 {
-    color: rgb(227, 227, 227);
-}
-
-
-
-#container-landing {
-    margin-top: 50%;
-    width: 99%;
-    height: 211px;
-    position: absolute;
-    backdrop-filter: blur(5px);
-    background-color: rgba(172, 172, 172, 0.3);
-    z-index: 10;
-}
-
 
 .center {
     display: block;
