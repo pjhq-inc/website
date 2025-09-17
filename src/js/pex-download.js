@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (pexButton) {
         pexButton.addEventListener('click', function() {
-            const pexUrl = '../../PJNH-2.0.zip';
+            const pexUrl = '../../PJAS';
             const link = document.createElement('a');
             link.href = pexUrl;
-            link.download = 'PJHQ-PEX.zip';
+            //link.download = 'PJHQ-PEX.zip';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
