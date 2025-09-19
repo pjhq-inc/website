@@ -7,6 +7,8 @@ const progressFill = document.getElementById('progressFill');
 const progressText = document.getElementById('progressText');
 const statusMessage = document.getElementById('statusMessage');
 
+const BACKEND_URL = 'https://pjas-production.up.railway.app';
+
 dropZone.addEventListener('dragover', (e) => {
     e.preventDefault();
     dropZone.classList.add('dragover');
@@ -107,7 +109,7 @@ function uploadFile(file) {
         showStatus('Upload failed: Network error', 'error');
     });
     
-    xhr.open('POST', '/api/files/upload');
+    xhr.open('POST', `${BACKEND_URL}/api/files/upload`);
     xhr.send(formData);
 }
 
@@ -139,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 async function loadStoredFiles() {
     try {
-        const response = await fetch('/api/files');
+        const response = await fetch(`${BACKEND_URL}/api/files`);
         const data = await response.json();
         
         if (data.success) {
@@ -214,7 +216,7 @@ async function downloadFile(fileId, filename) {
         downloadBtn.classList.add('downloading');
         downloadBtn.innerHTML = '<span>⬇️</span> Downloading...';
         
-        const response = await fetch(`/api/files/download/${fileId}`);
+        const response = await fetch(`${BACKEND_URL}/api/files/download/${fileId}`);
         
         if (!response.ok) {
             throw new Error('Download failed');
