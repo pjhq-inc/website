@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(32, 32, 32);
+    background-color: rgb(129, 129, 129);
     font-family: "Inter", sans-serif;
 }
 
@@ -9,25 +9,29 @@ body {
     box-sizing: border-box;
 }
 
+
+
 #cards {
     margin-top: 10%;
-    background-color: rgba(56, 56, 56, 0.281);
+    background-color: rgba(39, 39, 39, 0.281);
     height: 350px;
     overflow: hidden;
     padding: 0px 50px;
     white-space: nowrap;
-    
+    position: relative; 
 }
 
 @keyframes sliding {
-    from { transform: translateX(0);}
+    from { transform: translateX(0%);}
     to {transform: translateX(-100%);}
 }
 
+
 #cards-slide {
-    animation: 5s sliding infinite linear;
-    display: inline-block;
     
+    &:hover .card-group {
+        animation-play-state: paused;
+    }
 }
 
 .card {
@@ -35,27 +39,24 @@ body {
     width: 250px;
     border-radius: 20px;
     float: left;
-    margin-left: 50px;
+    margin-left: 100px;
     background-color: rgba(94, 94, 94, 0.7);
 }
 
+.card-group{
+    display: flex;
+    gap: 50px;
+    padding-right: 50px;
+    will-change: transform;
+    animation: 15s sliding infinite linear;
+    display: inline-flex;
 
+}
 
 .pfp{
     position: relative;
     display: inline-block;
     
-}
-
-.pfp::after{
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 4px;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(94, 94, 94, 0.7) 0%, rgba(94, 94, 94, 0.7) 5%, rgba(94, 94, 94, 0) 100%);
-
 }
 
 .pfp img{
@@ -64,4 +65,12 @@ body {
     border-radius: 20px;
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+    -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.links img{
+    width: 50px;
+    margin-left: 95px;
+    padding-top: 30px;
 }

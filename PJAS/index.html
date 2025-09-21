@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJAS - Psychological Journey Attached Storage</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>PJAS</h1>
+        <p>Psychological Journey Attached Storage</p>
+    </div>
+
+    <div class="upload-container">
+        <div class="drop-zone" id="dropZone">
+            <span class="drop-icon">📁</span>
+            <div class="drop-text">Drop your world.zip file here</div>
+            <div class="drop-subtext">or click to browse files</div>
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                Choose File
+            </button>
+        </div>
+
+        <input type="file" id="fileInput" class="file-input" accept=".zip,.rar,.7z,.tar,.gz" />
+
+        <div class="file-info" id="fileInfo">
+            <h3>Selected File:</h3>
+            <div class="file-details" id="fileDetails"></div>
+        </div>
+
+        <div class="progress-container" id="progressContainer">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div class="progress-text" id="progressText">Uploading... 0%</div>
+        </div>
+
+        <div class="status-message" id="statusMessage"></div>
+    </div>
+
+    <div class="files-section">
+        <div class="section-header">
+            <h2 class="section-title">Stored Files</h2>
+            <button class="refresh-files-btn" onclick="loadStoredFiles()">Refresh</button>
+        </div>
+        <div class="files-grid" id="filesGrid">
+            <div class="no-files">
+                <h3>No files stored yet</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
