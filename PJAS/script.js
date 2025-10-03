@@ -40,12 +40,12 @@ dropZone.addEventListener('click', () => {
 });
 
 function handleFile(file) {
-    const allowedTypes = ['.zip', '.rar', '.7z', '.tar', '.gz'];
+    const allowedTypes = ['.zip', '.rar', '.7z', '.tar', '.gz', '.png', '.jpeg', '.toml', '.txt', '.dat' , '.json', '.cfg', '.o', '.md', '.sh', '.bat'];
     const fileName = file.name.toLowerCase();
     const isValidType = allowedTypes.some(type => fileName.endsWith(type));
 
     if (!isValidType) {
-        showStatus('Please select a valid archive file (.zip, .rar, .7z, .tar, .gz)', 'error');
+        showStatus('Please select a valid archive file', 'error');
         return;
     }
 
