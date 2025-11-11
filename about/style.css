@@ -216,7 +216,7 @@ body {
    animation-fill-mode: forwards; 
   
   }
-  #zeldalord, #uwudwagon, #pixelatedface, #carrot, #reclipse, #zilla, #flop, #sqrt{
+  #zeldalord, #sinon, #pixelatedface, #carrot, #reclipse, #zilla, #flop, #sqrt{
     position: absolute;
     opacity: 0;
     animation: swoop 6s ease-in-out;
@@ -243,11 +243,11 @@ body {
   #zeldalord {
     animation-delay: 0s;
   }
-  #uwudwagon {
-    animation-delay: 6s; 
+  #sinon {
+    animation-delay: 24s; 
   }
   #pixelatedface {
-    animation-delay: 36s;
+    animation-delay: 6s;
   }
   #carrot {
     animation-delay: 12s; 
@@ -256,10 +256,10 @@ body {
     animation-delay: 18s;
   }
   #zilla {
-    animation-delay: 24s;
+    animation-delay: 30s;
   }
   #flop {
-    animation-delay: 30s;
+    animation-delay: 36s;
   }
   #sqrt {
     animation-delay: 42s;
